@@ -1,0 +1,87 @@
+:root {
+    --gradient-hero: linear-gradient(
+        165deg,
+        rgba(0, 0, 0, 0.75) 0%,
+        rgba(10, 10, 10, 0.45) 50%,
+        rgba(10, 10, 10, 0.25) 100%
+    );
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+}
+
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(1rem);
+    transition:
+        opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-reveal].reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+[data-reveal="soft-zoom"] {
+    opacity: 0;
+    transform: translateY(0.75rem) scale(0.985);
+    transition:
+        opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-reveal="soft-zoom"].reveal-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+[data-reveal].reveal-stagger {
+    opacity: 1;
+    transform: none;
+    transition: none;
+}
+
+[data-reveal].reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(0.75rem);
+    transition:
+        opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-reveal].reveal-stagger.reveal-visible > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+[data-reveal].reveal-stagger.reveal-visible > *:nth-child(1) { transition-delay: 0.05s; }
+[data-reveal].reveal-stagger.reveal-visible > *:nth-child(2) { transition-delay: 0.11s; }
+[data-reveal].reveal-stagger.reveal-visible > *:nth-child(3) { transition-delay: 0.17s; }
+[data-reveal].reveal-stagger.reveal-visible > *:nth-child(4) { transition-delay: 0.23s; }
+[data-reveal].reveal-stagger.reveal-visible > *:nth-child(5) { transition-delay: 0.29s; }
+[data-reveal].reveal-stagger.reveal-visible > *:nth-child(6) { transition-delay: 0.35s; }
+
+.portfolio-carousel__track {
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .portfolio-carousel__track {
+        transition: none;
+    }
+
+    [data-reveal],
+    [data-reveal="soft-zoom"],
+    [data-reveal].reveal-stagger > * {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}
